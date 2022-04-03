@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="main-border p-5 mt-5">
+  <div class="main-border p-5 mt-5 mb-5">
     <h1>Team Generator</h1>
     <ul class="list-group mb-3 main-border p-3">
       <li *ngFor="let member of members" class="list-group-item">
@@ -38,5 +38,14 @@
       </button>
     </div>
     <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="teams.length" class="teams-container">
+    <app-team
+      *ngFor="let team of teams; let i = index"
+      [team]="team"
+      [index]="i"
+    >
+    </app-team>
   </div>
 </div>

@@ -35,9 +35,12 @@ export class AppComponent {
   generateTeams(){
 
     if(!this.numOfTeams || this.numOfTeams <= 0){
+      this.errorMessage = "Invalid number of teams"
       return;
     }
 
+    // Remove error message
+    this.errorMessage = '';
     // Create a reference to members array
     const allMembers = [...this.members];
 
@@ -60,9 +63,9 @@ export class AppComponent {
           this.teams[i] = [member];
         }       
       }
-      console.log(this.teams);
-      this.members = [];
-      this.numOfTeams = '';
     }
+    console.log(this.teams);
+    this.members = [];
+    this.numOfTeams = '';
   }
 }
