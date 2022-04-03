@@ -2,32 +2,41 @@
   <div class="main-border p-5 mt-5">
     <h1>Team Generator</h1>
     <ul class="list-group mb-3 main-border p-3">
-      <li class="list-group-item">Joe Bloggs</li>
-      <li class="list-group-item">James Bond</li>
-      <li class="list-group-item">Brice Wayne</li>
+      <li *ngFor="let member of members" class="list-group-item">
+        {{ member }}
+      </li>
     </ul>
 
     <hr />
     <div class="input-group mb-3">
       <input
+        #addMemberInput
         type="text"
         class="form-control"
         aria-label="Default"
         placeholder="Name"
+        (input)="onInput(addMemberInput.value)"
         aria-describedby="inputGroup-sizing-default"
+        [value]="newMemberName"
       />
-      <button class="btn btn-primary">Add</button>
+      <button class="btn btn-primary" (click)="add()">Add</button>
     </div>
 
     <div class="input-group mb-3">
       <input
-        type="text"
+        #numOfTeamsInput
+        type="number"
         class="form-control"
         aria-label="Default"
         placeholder="Number of teams"
         aria-describedby="inputGroup-sizing-default"
+        (input)="onNumOfTeamsInput(numOfTeamsInput.value)"
+        [value]="numOfTeams"
       />
-      <button class="btn btn-primary">Generate</button>
+      <button (click)="generateTeams()" class="btn btn-primary">
+        Generate
+      </button>
     </div>
+    <p *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</p>
   </div>
 </div>
